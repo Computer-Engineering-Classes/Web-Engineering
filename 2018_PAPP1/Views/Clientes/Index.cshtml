@@ -1,0 +1,65 @@
+﻿@model IEnumerable<_2018_PAPP1.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Adicionar">+ Adicionar</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NivelCliente)
+            </th>
+            <th>Antiguidade</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.Id">X</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NivelCliente)
+            </td>
+            <td>
+                @{
+                     string antiguidade;
+                     int years = DateTime.Now.Year - item.DataRegisto.Year;
+                     if (years > 0) antiguidade = years + (years == 1 ? " ano" : " anos");
+                     else
+                     {
+                         int months = (DateTime.Now.Month - item.DataRegisto.Month) 
+                         + 12 * (DateTime.Now.Year - item.DataRegisto.Year);
+                         if (months > 0) antiguidade = months + (months == 1 ? " mês" : " meses");
+                         else
+                         {
+                             int days = Convert.ToInt32((DateTime.Now - item.DataRegisto).TotalDays);
+                             antiguidade = days + (days == 1 ? " dia" : " dias");
+                         }
+                     }
+                }
+                @Html.DisplayFor(modelitem => antiguidade)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
