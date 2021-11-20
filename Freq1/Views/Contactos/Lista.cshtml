@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Freq1.Models.Contacto>
+
+@{
+    ViewData["Title"] = "Lista";
+}
+
+<h1>Contactos</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NickName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amigo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NickName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amigo)
+            </td>
+            <td>
+                <a asp-action="Alterar" asp-route-id="@item.Id">Edit</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@if(TempData["nickname"] != null)
+{ 
+    <p>Contacto '@TempData["nickname"]' alterado com sucesso.</p>
+}
