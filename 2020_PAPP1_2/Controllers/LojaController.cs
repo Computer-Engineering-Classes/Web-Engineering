@@ -48,7 +48,7 @@ namespace _2020_PAPP1_2.Controllers
             {
                 ModelState.AddModelError("Ano", "O ano tem de ser entre 2000 e o ano corrente");
             }
-            if (Path.GetExtension(Foto.FileName) != ".jpg") // Foto.ContentType != MediaTypeNames.Image.Jpeg
+            if (Foto.ContentType != MediaTypeNames.Image.Jpeg)
             {
                 ModelState.AddModelError("Foto", "A foto tem de ser JPG");
             }

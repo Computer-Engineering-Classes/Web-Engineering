@@ -1,7 +1,6 @@
 ﻿using Aula6.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -27,7 +26,7 @@ namespace Aula6.Controllers
         {
             ViewBag.letter = letter;
 
-            if(string.IsNullOrEmpty(letter) == false)
+            if (string.IsNullOrEmpty(letter) == false)
             {
                 return View(await context.Students.Where(x => x.Name.StartsWith(letter)).Include(c => c.Course).ToListAsync());
             }
@@ -35,6 +34,33 @@ namespace Aula6.Controllers
             {
                 return View(await context.Students.Include(c => c.Course).ToListAsync());
             }
+        }
+
+        public async Task<IActionResult> Index3(string property, string order)
+        {
+            ViewBag.property = property;
+            ViewBag.order = order;
+
+            if (string.IsNullOrEmpty(order) == false && string.IsNullOrEmpty(property) == false)
+            {
+                if (ViewBag.order == "Ascending" && ViewBag.property == "byNumber")
+                {
+                    return View(await context.Students.OrderBy(x => x.Number).Include(c => c.Course).ToListAsync());
+                }
+                if (ViewBag.order == "Ascending" && ViewBag.property == "byName")
+                {
+                    return View(await context.Students.OrderBy(x => x.Name).Include(c => c.Course).ToListAsync());
+                }
+                if (ViewBag.order == "Descending" && ViewBag.property == "byNumber")
+                {
+                    return View(await context.Students.OrderByDescending(x => x.Number).Include(c => c.Course).ToListAsync());
+                }
+                if (ViewBag.order == "Descending" && ViewBag.property == "byName")
+                {
+                    return View(await context.Students.OrderByDescending(x => x.Name).Include(c => c.Course).ToListAsync());
+                }
+            }
+            return View(await context.Students.Include(c => c.Course).ToListAsync());
         }
     }
 }

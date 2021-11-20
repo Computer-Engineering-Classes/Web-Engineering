@@ -78,6 +78,12 @@ namespace Aula6
                     defaults: new { Controller = "Students", Action = "Index2" });
 
                 endpoints.MapControllerRoute(
+                    name: "orderby",
+                    pattern: "Order/{property?}/{order?}", // Same class as inline constraint
+                    defaults: new { Controller = "Students", Action = "Index3" },
+                    constraints: new { property = @"byNumber|byName", order = @"Ascending|Descending" });
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
