@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
 
 namespace _2020_PAPP1_2.Controllers
@@ -16,16 +17,16 @@ namespace _2020_PAPP1_2.Controllers
         private readonly _2020_PAPP1_2Context _context;
         private readonly IHostEnvironment _he; // necessary to get the app folder
 
-        public LojaController(_2020_PAPP1_2Context context, IHostEnvironment e)
+        public LojaController(_2020_PAPP1_2Context context, IHostEnvironment he)
         {
             _context = context;
-            _he = e; // injects in the constructor info about the host environment
+            _he = he; // injects in the constructor info about the host environment
         }
 
         // GET: Loja
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Carro.ToListAsync());
+            return View(await _context.Carro.OrderByDescending(x => x.Ano).ToListAsync());
         }
 
         // GET: Loja/Inserir
@@ -47,7 +48,7 @@ namespace _2020_PAPP1_2.Controllers
             {
                 ModelState.AddModelError("Ano", "O ano tem de ser entre 2000 e o ano corrente");
             }
-            if (!Foto.FileName.EndsWith(".jpg"))
+            if (Path.GetExtension(Foto.FileName) != ".jpg") // Foto.ContentType != MediaTypeNames.Image.Jpeg
             {
                 ModelState.AddModelError("Foto", "A foto tem de ser JPG");
             }

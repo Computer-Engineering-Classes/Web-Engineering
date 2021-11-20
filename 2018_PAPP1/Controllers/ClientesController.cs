@@ -55,11 +55,11 @@ namespace _2018_PAPP1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Adicionar([Bind("Id,Nome,Email,DataRegisto,Password,NivelCliente,Telefone")] Cliente cliente, IFormCollection pairs)
+        public async Task<IActionResult> Adicionar([Bind("Id,Nome,Email,DataRegisto,Password,NivelCliente,Telefone")] Cliente cliente, string emailConf)
         {
-            if (!string.IsNullOrEmpty(pairs["Email Confirmação"]) && pairs["Email Confirmação"] != cliente.Email)
+            if (emailConf != cliente.Email)
             {
-                ModelState.AddModelError("Email Confirmação", "Email doesn't match");
+                ModelState.AddModelError("Email", "Email doesn't match");
             }
 
             if (ModelState.IsValid)
