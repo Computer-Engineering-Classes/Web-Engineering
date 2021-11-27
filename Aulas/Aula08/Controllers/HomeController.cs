@@ -19,6 +19,7 @@ namespace Aula8.Controllers
             _logger = logger;
         }
 
+        // GET: Home/AddCookies
         public IActionResult AddCookies()
         {
             // test the use of web cookies
@@ -34,6 +35,7 @@ namespace Aula8.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // GET: Home/DeleteCookies
         public IActionResult DeleteCookies()
         {
             // delete all cookies from response (and client)
@@ -45,6 +47,7 @@ namespace Aula8.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // GET: Home/AddSessionVariables
         public IActionResult AddSessionVariables()
         {
             // create variables of type string, int or byte array
@@ -55,6 +58,7 @@ namespace Aula8.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // GET: Home/DeleteSessionVariables
         public IActionResult DeleteSessionVariables()
         {
             // delete all variables stored in session
@@ -68,6 +72,7 @@ namespace Aula8.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // GET: Home/DeleteSession
         public IActionResult DeleteSession()
         {
             // this deletes all session variables, bcs it ends the session itself
@@ -77,11 +82,13 @@ namespace Aula8.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // GET: Home/Index
         public IActionResult Index()
         {
             return View();
         }
 
+        // GET: Home/Privacy
         public IActionResult Privacy()
         {
             return View();
