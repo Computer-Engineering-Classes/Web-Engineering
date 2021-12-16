@@ -53,12 +53,12 @@ namespace Aula11.Controllers
         }
 
         // GET: Delete
-        public async Task<IActionResult> Delete(int Id)
+        public async Task<string> Delete(int Id)
         {
             Person person = await _context.Person.FirstOrDefaultAsync(x => x.Id == Id);
             _context.Person.Remove(person);
             await _context.SaveChangesAsync();
-            return PartialView("Listing", _context.Person);
+            return "";
         }
     }
 }
