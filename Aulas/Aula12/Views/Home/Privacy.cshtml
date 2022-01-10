@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<h2>jQuery-UI testing</h2>
+
+For the implementation of this example, it is necessary to include 
+in the project the jquery-ui library that includes the JS and CSS documents.
+
+<hr />
+
+<div id="mytabs">
+    <ul>
+        <li><a href="#option1">Header option #1</a></li>
+        <li><a href="#option2">Header option #2</a></li>
+        <li><a href="#option3">Header option #3</a></li>
+    </ul>
+    <div id="option1">
+        This is the text from tab #1. It appears only when the corresponding tab is selected.
+    </div>
+    <div id="option2">
+        In this tab we can put whatever information we want.
+        It will always work in the same way, as long as the structure and sequence
+        of the HTML elements used to define the tabs are respected.
+    </div>
+    <div id="option3">
+        Inside the first &lt;div&gt;, the unordered &lt;ul&gt; defines
+        the tabs and the following &lt;div&gt; defines the corresponding
+        contents (pay attention to their id).
+    </div>
+</div>
+
+<div class="ui-widget">
+    <label for="tags">Tags (with autocomplete): </label>
+    <input id="tags" />
+</div>
+
+
+@section Scripts
+{
+    <script>
+        $('#mytabs').tabs();
+        $('#tags').autocomplete({ source: @ViewBag.Tags });
+    </script>
+}

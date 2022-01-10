@@ -6,7 +6,7 @@ namespace Aula11.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "{0} required")]
         public string Name { get; set; }
     }
 }
