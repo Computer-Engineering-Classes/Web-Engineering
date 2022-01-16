@@ -1,0 +1,16 @@
+﻿@model Piloto
+
+<form asp-action="Adiciona"
+    data-ajax="true" data-ajax-method="post"
+    data-ajax-mode="replace" data-ajax-update="#tabela">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <div>
+        <input type="number" name="novos" />
+        <input type="submit" value="+" class="btn btn-primary" />
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

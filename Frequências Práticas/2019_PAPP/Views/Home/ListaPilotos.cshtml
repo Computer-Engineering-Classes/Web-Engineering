@@ -1,0 +1,58 @@
+﻿@model IEnumerable<_2019_PAPP.Models.Piloto>
+
+<table class="table" id="tabela">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carro.Numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carro.Equipa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pontos)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            @if(item.Carro == null)
+            {
+                <td>------</td>
+                <td>------</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pontos)
+                </td>
+                <td></td>
+            }
+            else
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Carro.Numero)                        
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Carro.Equipa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pontos)
+                </td>
+                <td id="Col_@item.Id">
+                    <a asp-action="Adiciona" asp-route-id="@item.Id"
+                        data-ajax="true" data-ajax-method="get"
+                        data-ajax-mode="replace" data-ajax-update="#Col_@item.Id">
+                        Adicionar Pontos
+                    </a>
+                </td>
+            }
+        </tr>
+    }
+    </tbody>
+</table>

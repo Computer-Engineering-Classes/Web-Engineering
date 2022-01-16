@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2020_PAPP2", "2020_PAPP2.csproj", "{66CF8A69-B348-4CB7-B9D1-9EEEBFBA27A4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66CF8A69-B348-4CB7-B9D1-9EEEBFBA27A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66CF8A69-B348-4CB7-B9D1-9EEEBFBA27A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66CF8A69-B348-4CB7-B9D1-9EEEBFBA27A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66CF8A69-B348-4CB7-B9D1-9EEEBFBA27A4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C54CFCF5-A4DD-4245-8E9C-2AF8110EBCC7}
+	EndGlobalSection
+EndGlobal
