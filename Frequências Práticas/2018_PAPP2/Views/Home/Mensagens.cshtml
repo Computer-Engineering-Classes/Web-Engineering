@@ -1,0 +1,26 @@
+﻿@model IEnumerable<_2018_PAPP2.Models.Mensagem>
+
+<table class="table" id="tabela">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Corpo)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                <b>@Html.DisplayFor(modelItem => item.NomeUser)</b>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Corpo)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

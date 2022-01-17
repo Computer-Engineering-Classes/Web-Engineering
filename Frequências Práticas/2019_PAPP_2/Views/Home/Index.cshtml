@@ -1,0 +1,55 @@
+﻿@model IEnumerable<_2019_PAPP_2.Models.Carro>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de Carros</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Piloto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pontos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Piloto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pontos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca.Nome)
+            </td>
+            <td>
+                @if (item.Pontos == 0)
+                {
+                    <a asp-action="Editar" asp-route-id="@item.Id">Editar</a>                        
+                }
+                else
+                {
+                    <text>---</text>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

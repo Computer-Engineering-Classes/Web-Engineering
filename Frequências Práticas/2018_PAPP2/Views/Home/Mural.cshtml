@@ -1,0 +1,22 @@
+﻿@model IEnumerable<_2018_PAPP2.Models.Mensagem>
+
+@{
+    ViewData["Title"] = "Mural";
+}
+
+<div class="text-center">
+    <form asp-action="Mural" method="post"
+        data-ajax="true" data-ajax-method="post"
+        data-ajax-mode="replace" data-ajax-update="#tabela">
+        <div class="form-group">
+            <label for="Mensagem" class="form-label">
+                <b>Deixe uma mensagem no mural</b>
+            </label>
+            <input for="Mensagem" class="form-control" name="Mensagem" type="text" width="200" required />
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Escrever</button>        
+    </form>
+</div>
+<br />
+<partial name="Mensagens" model="Model" />

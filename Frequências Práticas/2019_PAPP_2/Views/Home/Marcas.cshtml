@@ -1,0 +1,44 @@
+﻿@model IEnumerable<_2019_PAPP_2.Models.Marca>
+
+@{
+    ViewData["Title"] = "Marcas";
+}
+
+<h1>Marcas</h1>
+
+<p>
+    @if (Context.Request.Cookies["ordem"] == "crescente")
+    {
+        <span>Ordem Crescente | </span>
+        <a asp-action="Marcas" asp-route-ordem="decrescente">(Mudar para Descrescente)</a>
+    }
+    else
+    {
+        <a asp-action="Marcas" asp-route-ordem="crescente">(Mudar para Crescente)</a>        
+        <span> | Ordem Decrescente</span>
+    }
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carros)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carros.Count)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

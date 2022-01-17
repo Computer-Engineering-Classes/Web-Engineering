@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h3 class="display-4">Brevemente...</h3>
+    <h2 id="contador"></h2>
+    <br />
+    <u id="NoInt">@ViewBag.NoInt Utilizadores Interessados</u>
+    <br />
+    <div id="interessado">
+        @if (SignInManager.IsSignedIn(User)
+            && Context.Request.Cookies["JaVotou"] != "1")
+        {
+            <a asp-action="EstouInteressado" class="btn btn-primary"
+                data-ajax="true" data-ajax-method="post"
+                data-ajax-mode="replace" data-ajax-update="#NoInt"
+                data-ajax-loading="#wait" data-ajax-success="esconder">
+                + Estou Interessado
+            </a>
+            <br />
+            <div id="wait" style="display:none">
+                <img src="~/loading.gif" />
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        setInterval(function () {
+            var evento = new Date(2022, 1, 27, 11, 0);
+            var diff = (evento - new Date())/1000;
+            var dias = Math.trunc(diff / 86400);
+            var horas = Math.trunc((diff-86400*dias)/3600);
+            var minutos = Math.trunc((diff-86400*dias-3600*horas)/60);
+            var segundos = Math.trunc(diff-86400*dias-3600*horas-60*minutos);
+            $("#contador").text(dias+" dias " 
+                +horas+" horas "
+                +minutos+" minutos "
+                +segundos+" segundos...");
+        }, 1000);
+        function esconder () {
+            $("#interessado").hide();
+        }
+    </script>
+}
