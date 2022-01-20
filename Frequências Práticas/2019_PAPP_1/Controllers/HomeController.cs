@@ -27,6 +27,7 @@ namespace _2019_PAPP.Controllers
 
         public async Task<IActionResult> Index()
         {
+            HttpContext.Session.SetString("podeEditar", "true");
             var pilotos = await _context.Piloto
                 .Include(x => x.Carro)
                 .OrderByDescending(x => x.Pontos)
@@ -35,28 +36,20 @@ namespace _2019_PAPP.Controllers
         }
 
         [AjaxFilter]
-        public async Task<IActionResult> Adiciona(int id)
+        public IActionResult Adiciona(int id)
         {
-            var piloto = await _context.Piloto
-                .SingleOrDefaultAsync(x => x.Id == id);
-            return PartialView(nameof(Adiciona), piloto);
+            return PartialView(id);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Adiciona(IFormCollection pairs)
+        public async Task<IActionResult> Adiciona(int Id, int Novos)
         {
-            int id = Convert.ToInt32(pairs["Id"]);
-            int pontos = Convert.ToInt32(pairs["novos"]);
+            var piloto = await _context.Piloto
+                .SingleOrDefaultAsync(x => x.Id == Id);
+            piloto.Pontos += Novos;
+            _context.Update(piloto);
+            await _context.SaveChangesAsync();
 
-            if(pontos >= 0)
-            {
-                var piloto = await _context.Piloto
-                    .SingleOrDefaultAsync(x => x.Id == id);
-                piloto.Pontos += pontos;
-                _context.Update(piloto);
-                await _context.SaveChangesAsync();
-            }
             var pilotos = await _context.Piloto
                 .Include(x => x.Carro)
                 .OrderByDescending(x => x.Pontos)

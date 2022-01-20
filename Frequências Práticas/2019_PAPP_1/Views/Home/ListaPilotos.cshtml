@@ -31,7 +31,6 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Pontos)
                 </td>
-                <td></td>
             }
             else
             {
@@ -44,6 +43,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Pontos)
                 </td>
+            }
+            @if(item.Carro != null && Context.Session.GetString("podeEditar") == "true")
+            {
                 <td id="Col_@item.Id">
                     <a asp-action="Adiciona" asp-route-id="@item.Id"
                         data-ajax="true" data-ajax-method="get"
@@ -52,7 +54,11 @@
                     </a>
                 </td>
             }
+            else
+            {
+                <td></td>                
+            }
         </tr>
-    }
+        }
     </tbody>
 </table>

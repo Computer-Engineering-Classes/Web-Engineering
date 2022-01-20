@@ -27,6 +27,8 @@ namespace _2019_PAPP
         {
             services.AddControllersWithViews();
 
+            services.AddSession();
+
             services.AddDbContext<_2019_PAPPContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("_2019_PAPPContext")));
         }
@@ -48,7 +50,9 @@ namespace _2019_PAPP
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            
+            app.UseSession();
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

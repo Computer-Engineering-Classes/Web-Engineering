@@ -15,15 +15,15 @@ namespace _2019_PAPP.Filters
             else
             {
                 context.HttpContext.Response.StatusCode = 403;
-                context.Result = new EmptyResult();
-               // context.Result = new RedirectToRouteResult(
-               //     new RouteValueDictionary(new
-               //     {
-               //         controller = "Home",
-               //         action = "Index"
-               //     })
-               //);
-            }
+				context.Result = new EmptyResult();
+				//context.Result = new RedirectToRouteResult(
+				//	new RouteValueDictionary(new
+				//	{
+				//		controller = "Home",
+				//		action = "Index"
+				//	})
+				//  );
+			}
         }
     }
 }
