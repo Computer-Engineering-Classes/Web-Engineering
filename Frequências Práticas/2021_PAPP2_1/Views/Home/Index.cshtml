@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@model IEnumerable<Freq2.Models.Filme>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de Filmes</h1>
+
+<p>
+    <a asp-action="AddFilme">Introduzir novo Filme</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duracao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr id="Row_@item.Id">
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duracao)
+            </td>
+            <td>
+            @if (SignInManager.IsSignedIn(User) 
+            && Context.Request.Cookies["alreadyDeleted"] != User.Identity.Name)
+            {
+                <a asp-action="Delete" asp-route-id="@item.Id" data-ajax="true" 
+                    data-ajax-method="get" data-ajax-mode="replace" 
+                    data-ajax-update="#Row_@item.Id" data-ajax-confirm="Tem a certeza?">Delete</a>                        
+            }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
